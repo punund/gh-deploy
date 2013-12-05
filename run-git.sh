@@ -9,7 +9,8 @@ if cd $dir; then
   git fetch origin $branch:refs/remotes/origin/$branch
   git reset --hard origin/$branch
 
-  npm
+  npm install
+
   [ -x node_modules/.bin/bower ] && bower i
 
 fi
