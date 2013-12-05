@@ -7,6 +7,7 @@ argv = require('optimist')
   .demand('repo')
   .describe('repo', 'comma-separated list of repos')
   .default('branch', 'production')
+  .default('secret', 'redfly')
   .argv
 
 repos = argv.repo.split ','
@@ -16,6 +17,7 @@ githubhook = require('githubhook')
 
 github = githubhook
   port: argv.port
+  secret: argv.secret
   logger:
     log: (data) ->  console.log '*', data
     error: (data) -> console.error '!', data
@@ -36,6 +38,3 @@ for repo in repos
       console.log '(!) ' + data
 
     gitrun.on 'close', (code) -> console.log "Done (#{code})."
-
-
-
